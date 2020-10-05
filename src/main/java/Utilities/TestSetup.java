@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
@@ -23,16 +24,23 @@ public class TestSetup {
 	private static Properties configProp=null;	
 	private static Logger logger=null;
 	private static ConsoleAppender console=new ConsoleAppender(new PatternLayout("%d{HH:mm:ss} %-25F [%-5p] : %m%n"));
+	private static FileAppender fileappender;
 	
 	//initialising logger
 	void initialiseLogger()
 	{
 		if(logger==null)
 		{
+			try {
+				fileappender=new FileAppender(new PatternLayout("%d{dd MMM YYYY HH:mm} %-20F [%-5p] : %m%n"), 
+						System.getProperty("user.dir")+"\\src\\test\\resources\\TestLog.log");
+			} catch (IOException e) {e.printStackTrace();}
+			
 			console.setThreshold(Level.DEBUG);
 			logger=Logger.getLogger(TestSetup.class);
 			logger.addAppender(console);
-		}	
+			logger.addAppender(fileappender);
+		}
 	}	
 	
 	//Initialising the driver
