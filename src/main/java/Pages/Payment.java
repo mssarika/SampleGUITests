@@ -63,8 +63,8 @@ public class Payment extends BasePage{
 		String departureStation="";
 		try{ departureStation=driver.findElement(departure).getText();}
 		catch(StaleElementReferenceException exc)
-		{
-			new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(driver.findElement(departure)));
+		{	
+			waitForVisibility(driver.findElement(departure), 10,"Could not retrieve Departure station details");
 			departureStation=driver.findElement(departure).getText();
 		}
 		
@@ -80,7 +80,7 @@ public class Payment extends BasePage{
 		try{ arrivalStation=driver.findElement(arrival).getText();}
 		catch(StaleElementReferenceException exc)
 		{
-			new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(driver.findElement(arrival)));
+			waitForVisibility(driver.findElement(arrival), 10,"Could not retrieve Arrival station details");
 			arrivalStation=driver.findElement(arrival).getText();
 		}
 		if(!arrivalStation.equals(StartBooking.arrival))
