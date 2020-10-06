@@ -56,7 +56,7 @@ public class StartBooking extends BasePage{
 		//Submitting the details and verifying if Train timings are retrieved
 		logger.info("Submitting the search details");
 		moveToElement(getTickets).click();
-		Assert.assertTrue("No train timings retrieved", waitForVisibility(Continue,10,"Search was not successful")!=null);
+		Assert.assertTrue("No train timings retrieved", waitForVisibility(Continue,20,"Search was not successful")!=null);
 		logger.info("Train timings successfully retrieved");
 	}
 	
