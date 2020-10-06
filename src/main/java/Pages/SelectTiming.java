@@ -53,7 +53,7 @@ public class SelectTiming extends BasePage{
 			cost=cost+Float.parseFloat(trainOfChoice.findElement(selectedReturnTrainCost).getText().substring(1));
 		else
 			cost=cost+Float.parseFloat(trainOfChoice.findElement(selectedTrainCost).getText().substring(1));
-		DecimalFormat df = new DecimalFormat("0.00");
+		
 		String expectedValue=new DecimalFormat("0.00").format(cost);
 		
 		/*once the train is selected and the cost before adding the booking fee is displayed,		 
